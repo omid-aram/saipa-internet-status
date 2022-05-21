@@ -765,5 +765,9 @@ namespace InternetStatus
 
         #endregion
 
+        private void mnuConnectionTip_Click(object sender, EventArgs e)
+        {
+            mnuIsAllowConnection.PerformClick();
+        }
     }
 }
