@@ -752,7 +752,7 @@ namespace InternetStatus
             {
                 var menuItem = sender as ToolStripMenuItem;
 
-                if (menuItem != null)
+                if (menuItem != null) 
                 {
                     TimerInterval = int.Parse(menuItem.Tag.ToString());
                 }
