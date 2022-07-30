@@ -34,6 +34,8 @@ namespace InternetStatus
         private string _sent;
         private Stream _data;
 
+        const long alarmVolume = 26214400;//25MB
+        private long lastAlarmStep;
         private WebClient WebClient { get; set; }
 
         private readonly BackgroundWorker _worker;
@@ -244,6 +246,15 @@ namespace InternetStatus
             lblTime.Text = _myModel.UpTime.ToString();
             lblReceived.Text = SizeToString(_myModel.Recieved);
             lblSent.Text = SizeToString(_myModel.Sent);
+
+            //Alarm if 'Recieved' is more than a multiple of the 'alarmVolume'
+            var alarmStep = _myModel.Recieved / alarmVolume;
+            if (alarmStep != lastAlarmStep)
+            {
+                lastAlarmStep = alarmStep;
+                notifyIcon.BalloonTipText = "Volume exceeded " + SizeToString(alarmStep * alarmVolume);
+                notifyIcon.ShowBalloonTip(5000);
+            }
 
             mnuTotalTime.Text = lblTime.Text;
             mnuTotalReceived.Text = lblReceived.Text;
