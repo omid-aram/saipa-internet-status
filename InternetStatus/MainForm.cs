@@ -461,7 +461,7 @@ namespace InternetStatus
             TimerInterval = Settings.Default.Interval;
             PrintModel();
 
-            //LogStatus("Saved values are recovered.");
+            mnuIsAllowConnection.Checked = false; //Settings.Default.IsAllowConnection; //chkIsPrevent.Checked;
         }
 
         public string FindDisplayName()
@@ -589,7 +589,7 @@ namespace InternetStatus
 
                 InstallMeOnStartUp();
 
-                mnuIsAllowConnection.Checked = false; //Settings.Default.IsAllowConnection; //chkIsPrevent.Checked;
+                //mnuIsAllowConnection.Checked = false; //Settings.Default.IsAllowConnection; //chkIsPrevent.Checked;
 
                 RefreshPage();
 
