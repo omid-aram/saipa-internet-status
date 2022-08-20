@@ -275,7 +275,7 @@
             this.txtConnectUrl.Name = "txtConnectUrl";
             this.txtConnectUrl.Size = new System.Drawing.Size(211, 13);
             this.txtConnectUrl.TabIndex = 1;
-            this.txtConnectUrl.Text = "http://omidaram.ir";
+            this.txtConnectUrl.Text = "http://iran.ir";
             // 
             // lblSent
             // 

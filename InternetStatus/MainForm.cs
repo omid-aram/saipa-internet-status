@@ -733,6 +733,7 @@ namespace InternetStatus
                     if (!string.IsNullOrEmpty(connectUrl.Trim()))
                     {
                         WebClient.OpenRead(connectUrl);
+                        RefreshPage();
                     }
                 }
                 else
