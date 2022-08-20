@@ -35,7 +35,8 @@ namespace InternetStatus
         private Stream _data;
 
         const long alarmVolume = 26214400;//25MB
-        private long lastAlarmStep;
+        private long lastRecievedAlarmStep;
+        private long lastSentAlarmStep;
         private WebClient WebClient { get; set; }
 
         private readonly BackgroundWorker _worker;
@@ -248,11 +249,20 @@ namespace InternetStatus
             lblSent.Text = SizeToString(_myModel.Sent);
 
             //Alarm if 'Recieved' is more than a multiple of the 'alarmVolume'
-            var alarmStep = _myModel.Recieved / alarmVolume;
-            if (alarmStep != lastAlarmStep)
+            var recievedAlarmStep = _myModel.Recieved / alarmVolume;
+            if (recievedAlarmStep != lastRecievedAlarmStep)
             {
-                lastAlarmStep = alarmStep;
-                notifyIcon.BalloonTipText = "Volume exceeded " + SizeToString(alarmStep * alarmVolume);
+                lastRecievedAlarmStep = recievedAlarmStep;
+                notifyIcon.BalloonTipText = "Recieved Volume exceeded " + SizeToString(recievedAlarmStep * alarmVolume);
+                notifyIcon.ShowBalloonTip(5000);
+            }
+
+            //Alarm if 'Sent' is more than a multiple of the 'alarmVolume'
+            var sentAlarmStep = _myModel.Sent / alarmVolume;
+            if (sentAlarmStep != lastSentAlarmStep)
+            {
+                lastSentAlarmStep = sentAlarmStep;
+                notifyIcon.BalloonTipText = "Sent Volume exceeded " + SizeToString(sentAlarmStep * alarmVolume);
                 notifyIcon.ShowBalloonTip(5000);
             }
 
@@ -412,6 +422,7 @@ namespace InternetStatus
             Settings.Default.Sent = _myModel.Sent;
             Settings.Default.IsSync = _myModel.IsSync;
             Settings.Default.Interval = TimerInterval;
+            Settings.Default.ConnectUrl = txtConnectUrl.Text;
 
             Settings.Default.Save();
 
@@ -447,6 +458,7 @@ namespace InternetStatus
                 Settings.Default.Sent = 0;
                 Settings.Default.IsSync = false;
                 Settings.Default.Interval = TimerInterval;
+                Settings.Default.ConnectUrl = txtConnectUrl.Text;
 
                 Settings.Default.Save();
             }
@@ -459,6 +471,8 @@ namespace InternetStatus
             _myModel.Sent = Settings.Default.Sent;
             _myModel.IsSync = Settings.Default.IsSync;
             TimerInterval = Settings.Default.Interval;
+            txtConnectUrl.Text = Settings.Default.ConnectUrl;
+
             PrintModel();
 
             mnuIsAllowConnection.Checked = false; //Settings.Default.IsAllowConnection; //chkIsPrevent.Checked;
@@ -581,6 +595,7 @@ namespace InternetStatus
 
                 WebClient = new WebClient();
                 WebClient.Headers.Add("user-agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.2; .NET CLR 1.0.3705;)");
+                WebClient.UseDefaultCredentials = true;
 
                 MyStatus = Status.Loading;
                 WriteStatusTexts();
@@ -713,6 +728,12 @@ namespace InternetStatus
                         string.Format("You may connect the internet and I just watch the usage.");
                     mnuConnectionTip.ForeColor = Color.Green;
                     mnuConnectionTip.Text = string.Format("Allowed.");
+
+                    var connectUrl = txtConnectUrl.Text;
+                    if (!string.IsNullOrEmpty(connectUrl.Trim()))
+                    {
+                        WebClient.OpenRead(connectUrl);
+                    }
                 }
                 else
                 {

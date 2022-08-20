@@ -49,6 +49,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.lstLog = new System.Windows.Forms.ListBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.txtConnectUrl = new System.Windows.Forms.TextBox();
             this.lblSent = new System.Windows.Forms.Label();
             this.lblReceived = new System.Windows.Forms.Label();
             this.lblDate = new System.Windows.Forms.Label();
@@ -116,57 +117,57 @@
             this.toolStripMenuItem2,
             this.btnClose});
             this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(181, 264);
+            this.contextMenuStrip.Size = new System.Drawing.Size(176, 242);
             // 
             // mnuHeader
             // 
             this.mnuHeader.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.mnuHeader.Name = "mnuHeader";
-            this.mnuHeader.Size = new System.Drawing.Size(180, 22);
+            this.mnuHeader.Size = new System.Drawing.Size(175, 22);
             this.mnuHeader.Text = "Internet Status";
             // 
             // mnuInternetStatus
             // 
             this.mnuInternetStatus.Name = "mnuInternetStatus";
-            this.mnuInternetStatus.Size = new System.Drawing.Size(180, 22);
+            this.mnuInternetStatus.Size = new System.Drawing.Size(175, 22);
             this.mnuInternetStatus.Text = "Internet Status";
             this.mnuInternetStatus.Visible = false;
             // 
             // mnuTotalTime
             // 
             this.mnuTotalTime.Name = "mnuTotalTime";
-            this.mnuTotalTime.Size = new System.Drawing.Size(180, 22);
+            this.mnuTotalTime.Size = new System.Drawing.Size(175, 22);
             this.mnuTotalTime.Text = "Total Time";
             // 
             // mnuTotalReceived
             // 
             this.mnuTotalReceived.Name = "mnuTotalReceived";
-            this.mnuTotalReceived.Size = new System.Drawing.Size(180, 22);
+            this.mnuTotalReceived.Size = new System.Drawing.Size(175, 22);
             this.mnuTotalReceived.Text = "Total Received";
             // 
             // mnuTotalSent
             // 
             this.mnuTotalSent.Name = "mnuTotalSent";
-            this.mnuTotalSent.Size = new System.Drawing.Size(180, 22);
+            this.mnuTotalSent.Size = new System.Drawing.Size(175, 22);
             this.mnuTotalSent.Text = "Total Sent";
             // 
             // btnRefresh
             // 
             this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(180, 22);
+            this.btnRefresh.Size = new System.Drawing.Size(175, 22);
             this.btnRefresh.Text = "Refresh";
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(172, 6);
             // 
             // mnuIsAllowConnection
             // 
             this.mnuIsAllowConnection.CheckOnClick = true;
             this.mnuIsAllowConnection.Name = "mnuIsAllowConnection";
-            this.mnuIsAllowConnection.Size = new System.Drawing.Size(180, 22);
+            this.mnuIsAllowConnection.Size = new System.Drawing.Size(175, 22);
             this.mnuIsAllowConnection.Text = "Allow Connection";
             this.mnuIsAllowConnection.ToolTipText = "I will disconnect the internet, if it is connected.";
             this.mnuIsAllowConnection.CheckedChanged += new System.EventHandler(this.mnuIsAllowConnection_CheckedChanged);
@@ -175,32 +176,32 @@
             // 
             this.mnuConnectionTip.ForeColor = System.Drawing.Color.DarkRed;
             this.mnuConnectionTip.Name = "mnuConnectionTip";
-            this.mnuConnectionTip.Size = new System.Drawing.Size(180, 22);
+            this.mnuConnectionTip.Size = new System.Drawing.Size(175, 22);
             this.mnuConnectionTip.Text = "Not Allowed!";
             this.mnuConnectionTip.Click += new System.EventHandler(this.mnuConnectionTip_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(172, 6);
             // 
             // btnShowForm
             // 
             this.btnShowForm.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.btnShowForm.Name = "btnShowForm";
-            this.btnShowForm.Size = new System.Drawing.Size(180, 22);
+            this.btnShowForm.Size = new System.Drawing.Size(175, 22);
             this.btnShowForm.Text = "Show Status Form";
             this.btnShowForm.Click += new System.EventHandler(this.btnShowForm_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(177, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(172, 6);
             // 
             // btnClose
             // 
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(180, 22);
+            this.btnClose.Size = new System.Drawing.Size(175, 22);
             this.btnClose.Text = "Close";
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
@@ -245,6 +246,7 @@
             // 
             this.panel2.BackColor = System.Drawing.Color.MidnightBlue;
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.txtConnectUrl);
             this.panel2.Controls.Add(this.lblSent);
             this.panel2.Controls.Add(this.lblReceived);
             this.panel2.Controls.Add(this.lblDate);
@@ -263,6 +265,17 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(248, 303);
             this.panel2.TabIndex = 1;
+            // 
+            // txtConnectUrl
+            // 
+            this.txtConnectUrl.BackColor = System.Drawing.Color.MidnightBlue;
+            this.txtConnectUrl.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtConnectUrl.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.txtConnectUrl.Location = new System.Drawing.Point(18, 3);
+            this.txtConnectUrl.Name = "txtConnectUrl";
+            this.txtConnectUrl.Size = new System.Drawing.Size(211, 13);
+            this.txtConnectUrl.TabIndex = 1;
+            this.txtConnectUrl.Text = "http://omidaram.ir";
             // 
             // lblSent
             // 
@@ -591,6 +604,7 @@
             this.contextMenuStrip.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgToggleButton)).EndInit();
             this.statusStrip.ResumeLayout(false);
             this.statusStrip.PerformLayout();
@@ -653,6 +667,7 @@
         private System.Windows.Forms.ToolStripMenuItem mnuTotalSent;
         private System.Windows.Forms.ToolStripMenuItem mnuHeader;
         private System.Windows.Forms.ToolStripMenuItem mnuConnectionTip;
+        private System.Windows.Forms.TextBox txtConnectUrl;
     }
 }
 

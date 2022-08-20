@@ -29,5 +29,8 @@
     <Setting Name="Interval" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">40</Value>
     </Setting>
+    <Setting Name="ConnectUrl" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://iran.ir</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
