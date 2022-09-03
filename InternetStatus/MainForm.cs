@@ -37,6 +37,8 @@ namespace InternetStatus
         const long alarmVolume = 26214400;//25MB
         private long lastRecievedAlarmStep;
         private long lastSentAlarmStep;
+
+        private Point LastCursorPosition = Cursor.Position;
         private WebClient WebClient { get; set; }
 
         private readonly BackgroundWorker _worker;
@@ -121,6 +123,13 @@ namespace InternetStatus
         {
             if (!_workerStatus.IsBusy)
             {
+                //Move Cursor a little bit to prevent going on suspend status
+                if (Cursor.Position.X == LastCursorPosition.X && Cursor.Position.Y == LastCursorPosition.Y)
+                {
+                    Cursor.Position = new Point(LastCursorPosition.X + (LastCursorPosition.X > 10 ? -10 : 10), LastCursorPosition.Y);
+                }
+                LastCursorPosition = Cursor.Position;
+
                 var today = GetPersianDate(DateTime.Now);
                 if (Settings.Default.Date != today)
                 {
@@ -349,8 +358,8 @@ namespace InternetStatus
 
                         imgStatus.Image = Resources.globe;
                         pnlTop.BackColor = mnuHeader.BackColor = Color.DeepSkyBlue;
-                        
-                        
+
+
 
                         if (!IsAllowConnection)
                         {
@@ -785,7 +794,7 @@ namespace InternetStatus
             {
                 var menuItem = sender as ToolStripMenuItem;
 
-                if (menuItem != null) 
+                if (menuItem != null)
                 {
                     TimerInterval = int.Parse(menuItem.Tag.ToString());
                 }
