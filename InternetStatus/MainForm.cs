@@ -126,9 +126,17 @@ namespace InternetStatus
                 //Move Cursor a little bit to prevent going on suspend status
                 if (Cursor.Position.X == LastCursorPosition.X && Cursor.Position.Y == LastCursorPosition.Y)
                 {
-                    Cursor.Position = new Point(LastCursorPosition.X + (LastCursorPosition.X > 10 ? -10 : 10), LastCursorPosition.Y);
+                    //Cursor.Position = new Point(LastCursorPosition.X + (LastCursorPosition.X > 10 ? -10 : 10), LastCursorPosition.Y);
+                    NativeMethods.SendMouseInput(
+                        LastCursorPosition.X + (LastCursorPosition.X > 10 ? -10 : 10), 
+                        LastCursorPosition.Y, 
+                        Screen.AllScreens.Length > 0 ? Screen.AllScreens[0].Bounds.Width : 800, 
+                        Screen.AllScreens.Length > 0 ? Screen.AllScreens[0].Bounds.Height : 600, 
+                        false);
                 }
                 LastCursorPosition = Cursor.Position;
+
+                PowerHelper.ForceSystemAwake();
 
                 var today = GetPersianDate(DateTime.Now);
                 if (Settings.Default.Date != today)
