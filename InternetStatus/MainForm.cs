@@ -39,6 +39,9 @@ namespace InternetStatus
         private long lastSentAlarmStep;
 
         private Point LastCursorPosition = Cursor.Position;
+        private DateTime idleTimeFrom;
+        private long idleReceived;
+        private long idleSent;
         private WebClient WebClient { get; set; }
 
         private readonly BackgroundWorker _worker;
@@ -119,6 +122,12 @@ namespace InternetStatus
             }
         }
 
+        private void ResetIdleTime()
+        {
+            idleTimeFrom = DateTime.Now;
+            idleReceived = _myModel.Received;
+            idleSent = _myModel.Sent;
+        }
         private void RefreshPage()
         {
             if (!_workerStatus.IsBusy)
@@ -128,12 +137,31 @@ namespace InternetStatus
                 {
                     //Cursor.Position = new Point(LastCursorPosition.X + (LastCursorPosition.X > 10 ? -10 : 10), LastCursorPosition.Y);
                     NativeMethods.SendMouseInput(
-                        LastCursorPosition.X + (LastCursorPosition.X > 10 ? -10 : 10), 
-                        LastCursorPosition.Y, 
-                        Screen.AllScreens.Length > 0 ? Screen.AllScreens[0].Bounds.Width : 800, 
-                        Screen.AllScreens.Length > 0 ? Screen.AllScreens[0].Bounds.Height : 600, 
+                        LastCursorPosition.X + (LastCursorPosition.X > 10 ? -10 : 10),
+                        LastCursorPosition.Y,
+                        Screen.AllScreens.Length > 0 ? Screen.AllScreens[0].Bounds.Width : 800,
+                        Screen.AllScreens.Length > 0 ? Screen.AllScreens[0].Bounds.Height : 600,
                         false);
                 }
+                else
+                {
+                    ResetIdleTime();
+                }
+
+                //Auto Disconnect after some idle minutes
+                if ((DateTime.Now - idleTimeFrom).TotalMinutes >= 3)
+                {
+                    //To prevent non-willing disconnection during downloads and uploads
+                    if (((_myModel.Received - idleReceived) < 30 * Mb) && ((_myModel.Sent - idleSent) < 30 * Mb))
+                    {
+                        mnuIsAllowConnection.Checked = false;
+                    }
+                    else
+                    {
+                        ResetIdleTime();
+                    }
+                }
+
                 LastCursorPosition = Cursor.Position;
 
                 PowerHelper.ForceSystemAwake();
@@ -262,11 +290,13 @@ namespace InternetStatus
             lblUserId.Text = _myModel.UserId;
             lblDate.Text = _myModel.Date;
             lblTime.Text = _myModel.UpTime.ToString();
-            lblReceived.Text = SizeToString(_myModel.Recieved);
+            lblReceived.Text = SizeToString(_myModel.Received);
             lblSent.Text = SizeToString(_myModel.Sent);
 
+            //lblMessage.Text = $"{idleTimeFrom.ToShortTimeString()} - R: {SizeToString(idleReceived)} ({SizeToString(_myModel.Received - idleReceived)}) - S: {SizeToString(idleSent)} ({SizeToString(_myModel.Sent - idleSent)})";
+
             //Alarm if 'Recieved' is more than a multiple of the 'alarmVolume'
-            var recievedAlarmStep = _myModel.Recieved / alarmVolume;
+            var recievedAlarmStep = _myModel.Received / alarmVolume;
             if (recievedAlarmStep != lastRecievedAlarmStep)
             {
                 lastRecievedAlarmStep = recievedAlarmStep;
@@ -317,7 +347,7 @@ namespace InternetStatus
                         _myModel.DisplayName = _displayName;
                         _myModel.UserId = _userId;
                         _myModel.UpTime = Settings.Default.UpTime + StringToTimeSpan(_upTime);
-                        _myModel.Recieved = Settings.Default.Recieved + StringSizeToByte(_recieved);
+                        _myModel.Received = Settings.Default.Recieved + StringSizeToByte(_recieved);
                         _myModel.Sent = Settings.Default.Sent + StringSizeToByte(_sent);
                         PrintModel();
                         break;
@@ -435,7 +465,7 @@ namespace InternetStatus
             Settings.Default.UserId = _myModel.UserId;
             Settings.Default.Date = _myModel.Date;
             Settings.Default.UpTime = new TimeSpan(_myModel.UpTime.Ticks);
-            Settings.Default.Recieved = _myModel.Recieved;
+            Settings.Default.Recieved = _myModel.Received;
             Settings.Default.Sent = _myModel.Sent;
             Settings.Default.IsSync = _myModel.IsSync;
             Settings.Default.Interval = TimerInterval;
@@ -464,7 +494,7 @@ namespace InternetStatus
                 LogStatus(string.Format("┌──────────────────┬──────────────┐"));
                 LogStatus(string.Format("│ Summary usage of │ {0}{1} │", Settings.Default.Date, new string(' ', len - Settings.Default.Date.Length)), true);
                 LogStatus(string.Format("│   Total UpTime   │ {0}{1} │", Settings.Default.UpTime, new string(' ', len - Settings.Default.UpTime.ToString().Length)), true);
-                LogStatus(string.Format("│   Total Recieved │ {0}{1} │", recieved, new string(' ', len - recieved.Length)), true);
+                LogStatus(string.Format("│   Total Received │ {0}{1} │", recieved, new string(' ', len - recieved.Length)), true);
                 LogStatus(string.Format("│   Total Sent     │ {0}{1} │", sent, new string(' ', len - sent.Length)), true);
                 LogStatus(string.Format("└──────────────────┴──────────────┘"), true);
 
@@ -484,7 +514,7 @@ namespace InternetStatus
             _myModel.DisplayName = _displayName = Settings.Default.DisplayName;
             _myModel.UserId = _userId = Settings.Default.UserId;
             _myModel.UpTime = new TimeSpan(Settings.Default.UpTime.Ticks);
-            _myModel.Recieved = Settings.Default.Recieved;
+            _myModel.Received = Settings.Default.Recieved;
             _myModel.Sent = Settings.Default.Sent;
             _myModel.IsSync = Settings.Default.IsSync;
             TimerInterval = Settings.Default.Interval;

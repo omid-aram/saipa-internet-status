@@ -464,7 +464,7 @@
             // 
             this.lblMessage.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.lblMessage.Name = "lblMessage";
-            this.lblMessage.Size = new System.Drawing.Size(445, 17);
+            this.lblMessage.Size = new System.Drawing.Size(310, 17);
             this.lblMessage.Spring = true;
             // 
             // mnuRefresh

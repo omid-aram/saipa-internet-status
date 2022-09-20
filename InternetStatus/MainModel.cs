@@ -26,7 +26,7 @@ namespace InternetStatus
             set { _upTime = new TimeSpan(value); }
         }
 
-        public long Recieved { get; set; }
+        public long Received { get; set; }
 
         public long Sent { get; set; }
 
