@@ -185,6 +185,8 @@ namespace InternetStatus
                     //To prevent non-willing disconnection during downloads and uploads
                     if (((_myModel.Received - idleReceived) < 30 * Mb) && ((_myModel.Sent - idleSent) < 30 * Mb))
                     {
+                        ShowLockScreen();
+
                         if (IsAutoDC)
                         {
                             mnuIsAllowConnection.Checked = false;
@@ -212,6 +214,11 @@ namespace InternetStatus
 
                 _workerStatus.RunWorkerAsync();
             }
+        }
+
+        private void ShowLockScreen()
+        {
+            LockScreenForm.Show();
         }
 
         private void ReadValues(string response)
@@ -902,7 +909,7 @@ namespace InternetStatus
 
         private void btnLockScreen_Click(object sender, EventArgs e)
         {
-            LockScreenForm.Show();
+            ShowLockScreen();
         }
     }
 }

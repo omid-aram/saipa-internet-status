@@ -105,6 +105,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="globe.ico" />
+    <None Include="Resources\img103.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
