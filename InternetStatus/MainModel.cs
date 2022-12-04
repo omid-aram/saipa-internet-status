@@ -33,5 +33,9 @@ namespace InternetStatus
         public bool IsSync { get; set; }
 
         public int Interval { get; set; }
+
+        public bool IsNoSleep { get; set; }
+
+        public bool IsAutoDC { get; set; }
     }
 }

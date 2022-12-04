@@ -142,5 +142,29 @@ namespace InternetStatus.Properties {
                 this["ConnectUrl"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("true")]
+        public bool IsNoSleep {
+            get {
+                return ((bool)(this["IsNoSleep"]));
+            }
+            set {
+                this["IsNoSleep"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("false")]
+        public bool IsAutoDC {
+            get {
+                return ((bool)(this["IsAutoDC"]));
+            }
+            set {
+                this["IsAutoDC"] = value;
+            }
+        }
     }
 }

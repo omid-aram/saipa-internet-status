@@ -68,6 +68,10 @@
             this.lblStatusLogo = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblMessage = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lblNoSleepLogo = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lblNoSleep = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lblAutoDCLogo = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lblAutoDC = new System.Windows.Forms.ToolStripStatusLabel();
             this.mnuRefresh = new System.Windows.Forms.ToolStripSplitButton();
             this.checkEveryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
@@ -80,6 +84,7 @@
             this.pnlTop = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
             this.imgStatus = new System.Windows.Forms.PictureBox();
+            this.btnLockScreen = new System.Windows.Forms.ToolStripStatusLabel();
             this.contextMenuStrip.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -434,7 +439,12 @@
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.lblStatusLogo,
             this.lblStatus,
+            this.btnLockScreen,
             this.lblMessage,
+            this.lblNoSleepLogo,
+            this.lblNoSleep,
+            this.lblAutoDCLogo,
+            this.lblAutoDC,
             this.mnuRefresh,
             this.lblEmailLogo,
             this.lblEmail});
@@ -458,14 +468,45 @@
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(79, 17);
             this.lblStatus.Text = "Disco‭nnected";
-            this.lblStatus.DoubleClick += new System.EventHandler(this.btnRefresh_Click);
             // 
             // lblMessage
             // 
             this.lblMessage.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.lblMessage.Name = "lblMessage";
-            this.lblMessage.Size = new System.Drawing.Size(310, 17);
+            this.lblMessage.Size = new System.Drawing.Size(153, 17);
             this.lblMessage.Spring = true;
+            // 
+            // lblNoSleepLogo
+            // 
+            this.lblNoSleepLogo.Font = new System.Drawing.Font("Wingdings", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
+            this.lblNoSleepLogo.Name = "lblNoSleepLogo";
+            this.lblNoSleepLogo.Size = new System.Drawing.Size(17, 17);
+            this.lblNoSleepLogo.Text = "n";
+            this.lblNoSleepLogo.Click += new System.EventHandler(this.lblNoSleep_Click);
+            // 
+            // lblNoSleep
+            // 
+            this.lblNoSleep.DoubleClickEnabled = true;
+            this.lblNoSleep.Name = "lblNoSleep";
+            this.lblNoSleep.Size = new System.Drawing.Size(51, 17);
+            this.lblNoSleep.Text = "NoSleep";
+            this.lblNoSleep.Click += new System.EventHandler(this.lblNoSleep_Click);
+            // 
+            // lblAutoDCLogo
+            // 
+            this.lblAutoDCLogo.Font = new System.Drawing.Font("Wingdings", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
+            this.lblAutoDCLogo.Name = "lblAutoDCLogo";
+            this.lblAutoDCLogo.Size = new System.Drawing.Size(19, 17);
+            this.lblAutoDCLogo.Text = "o";
+            this.lblAutoDCLogo.Click += new System.EventHandler(this.lblAutoDC_Click);
+            // 
+            // lblAutoDC
+            // 
+            this.lblAutoDC.DoubleClickEnabled = true;
+            this.lblAutoDC.Name = "lblAutoDC";
+            this.lblAutoDC.Size = new System.Drawing.Size(49, 17);
+            this.lblAutoDC.Text = "AutoDC";
+            this.lblAutoDC.Click += new System.EventHandler(this.lblAutoDC_Click);
             // 
             // mnuRefresh
             // 
@@ -583,6 +624,14 @@
             this.imgStatus.TabIndex = 3;
             this.imgStatus.TabStop = false;
             // 
+            // btnLockScreen
+            // 
+            this.btnLockScreen.Font = new System.Drawing.Font("Wingdings", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
+            this.btnLockScreen.Name = "btnLockScreen";
+            this.btnLockScreen.Size = new System.Drawing.Size(19, 17);
+            this.btnLockScreen.Text = ":";
+            this.btnLockScreen.Click += new System.EventHandler(this.btnLockScreen_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -668,6 +717,11 @@
         private System.Windows.Forms.ToolStripMenuItem mnuHeader;
         private System.Windows.Forms.ToolStripMenuItem mnuConnectionTip;
         private System.Windows.Forms.TextBox txtConnectUrl;
+        private System.Windows.Forms.ToolStripStatusLabel lblAutoDCLogo;
+        private System.Windows.Forms.ToolStripStatusLabel lblAutoDC;
+        private System.Windows.Forms.ToolStripStatusLabel lblNoSleepLogo;
+        private System.Windows.Forms.ToolStripStatusLabel lblNoSleep;
+        private System.Windows.Forms.ToolStripStatusLabel btnLockScreen;
     }
 }
 

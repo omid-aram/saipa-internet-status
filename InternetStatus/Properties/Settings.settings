@@ -32,5 +32,11 @@
     <Setting Name="ConnectUrl" Type="System.String" Scope="User">
       <Value Profile="(Default)">http://iran.ir</Value>
     </Setting>
+    <Setting Name="IsNoSleep" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="IsAutoDC" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

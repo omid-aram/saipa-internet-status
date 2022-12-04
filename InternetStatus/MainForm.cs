@@ -93,11 +93,39 @@ namespace InternetStatus
             }
         }
 
+        public bool IsNoSleep
+        {
+            get { return _myModel.IsNoSleep; }
+            set
+            {
+                _myModel.IsNoSleep = value;
+
+                lblNoSleepLogo.Text = value ? "n" : "o";
+
+                LogStatus($"NoSleep: {value}");
+            }
+        }
+
+        public bool IsAutoDC
+        {
+            get { return _myModel.IsAutoDC; }
+            set
+            {
+                _myModel.IsAutoDC = value;
+
+                lblAutoDCLogo.Text = value ? "n" : "o";
+
+                LogStatus($"AutoDC: {value}");
+            }
+        }
+
         private const long Kb = 1024;
         private const long Mb = 1048576; //1024 * 1024;
         private const long Gb = 1073741824; //1024 * 1024 * 1024;
         private const long Tb = 1099511627776; //1024 * 1024 * 1024 * 1024;
         private const long Pb = 1125899906842624; //1024 * 1024 * 1024 * 1024 * 1024;
+
+        private LockScreenForm LockScreenForm = new LockScreenForm();
 
         #endregion
 
@@ -135,13 +163,16 @@ namespace InternetStatus
                 //Move Cursor a little bit to prevent going on suspend status
                 if (Cursor.Position.X == LastCursorPosition.X && Cursor.Position.Y == LastCursorPosition.Y)
                 {
-                    //Cursor.Position = new Point(LastCursorPosition.X + (LastCursorPosition.X > 10 ? -10 : 10), LastCursorPosition.Y);
-                    NativeMethods.SendMouseInput(
-                        LastCursorPosition.X + (LastCursorPosition.X > 10 ? -10 : 10),
-                        LastCursorPosition.Y,
-                        Screen.AllScreens.Length > 0 ? Screen.AllScreens[0].Bounds.Width : 800,
-                        Screen.AllScreens.Length > 0 ? Screen.AllScreens[0].Bounds.Height : 600,
-                        false);
+                    if (IsNoSleep)
+                    {
+                        //Cursor.Position = new Point(LastCursorPosition.X + (LastCursorPosition.X > 10 ? -10 : 10), LastCursorPosition.Y);
+                        NativeMethods.SendMouseInput(
+                            LastCursorPosition.X + (LastCursorPosition.X > 10 ? -10 : 10),
+                            LastCursorPosition.Y,
+                            Screen.AllScreens.Length > 0 ? Screen.AllScreens[0].Bounds.Width : 800,
+                            Screen.AllScreens.Length > 0 ? Screen.AllScreens[0].Bounds.Height : 600,
+                            false);
+                    }
                 }
                 else
                 {
@@ -154,7 +185,10 @@ namespace InternetStatus
                     //To prevent non-willing disconnection during downloads and uploads
                     if (((_myModel.Received - idleReceived) < 30 * Mb) && ((_myModel.Sent - idleSent) < 30 * Mb))
                     {
-                        mnuIsAllowConnection.Checked = false;
+                        if (IsAutoDC)
+                        {
+                            mnuIsAllowConnection.Checked = false;
+                        }
                     }
                     else
                     {
@@ -469,6 +503,8 @@ namespace InternetStatus
             Settings.Default.Sent = _myModel.Sent;
             Settings.Default.IsSync = _myModel.IsSync;
             Settings.Default.Interval = TimerInterval;
+            Settings.Default.IsNoSleep = IsNoSleep;
+            Settings.Default.IsAutoDC = IsAutoDC;
             Settings.Default.ConnectUrl = txtConnectUrl.Text;
 
             Settings.Default.Save();
@@ -505,6 +541,8 @@ namespace InternetStatus
                 Settings.Default.Sent = 0;
                 Settings.Default.IsSync = false;
                 Settings.Default.Interval = TimerInterval;
+                Settings.Default.IsNoSleep = IsNoSleep;
+                Settings.Default.IsAutoDC = IsAutoDC;
                 Settings.Default.ConnectUrl = txtConnectUrl.Text;
 
                 Settings.Default.Save();
@@ -518,6 +556,8 @@ namespace InternetStatus
             _myModel.Sent = Settings.Default.Sent;
             _myModel.IsSync = Settings.Default.IsSync;
             TimerInterval = Settings.Default.Interval;
+            IsNoSleep = Settings.Default.IsNoSleep;
+            IsAutoDC = Settings.Default.IsAutoDC;
             txtConnectUrl.Text = Settings.Default.ConnectUrl;
 
             PrintModel();
@@ -843,11 +883,26 @@ namespace InternetStatus
             }
         }
 
-        #endregion
-
         private void mnuConnectionTip_Click(object sender, EventArgs e)
         {
             mnuIsAllowConnection.PerformClick();
+        }
+
+        private void lblNoSleep_Click(object sender, EventArgs e)
+        {
+            IsNoSleep = !IsNoSleep;
+        }
+
+        private void lblAutoDC_Click(object sender, EventArgs e)
+        {
+            IsAutoDC = !IsAutoDC;
+        }
+
+        #endregion
+
+        private void btnLockScreen_Click(object sender, EventArgs e)
+        {
+            LockScreenForm.Show();
         }
     }
 }
