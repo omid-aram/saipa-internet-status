@@ -126,6 +126,7 @@ namespace InternetStatus
         private const long Pb = 1125899906842624; //1024 * 1024 * 1024 * 1024 * 1024;
 
         private LockScreenForm LockScreenForm = new LockScreenForm();
+        private bool IsFirstLoad = true;
 
         #endregion
 
@@ -185,7 +186,10 @@ namespace InternetStatus
                     //To prevent non-willing disconnection during downloads and uploads
                     if (((_myModel.Received - idleReceived) < 30 * Mb) && ((_myModel.Sent - idleSent) < 30 * Mb))
                     {
-                        ShowLockScreen();
+                        if (!IsFirstLoad)
+                        {
+                            ShowLockScreen();
+                        }
 
                         if (IsAutoDC)
                         {
@@ -705,6 +709,8 @@ namespace InternetStatus
                 mnuTotalTime.Image = imageList.Images[2];
                 mnuTotalReceived.Image = imageList.Images[3];
                 mnuTotalSent.Image = imageList.Images[4];
+
+                IsFirstLoad = false;
             }
             catch (Exception ex)
             {
