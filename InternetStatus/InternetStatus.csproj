@@ -47,6 +47,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="KeyboardHook.cs" />
+    <Compile Include="KeyLogsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KeyLogsForm.Designer.cs">
+      <DependentUpon>KeyLogsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="LockScreenForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -64,6 +71,9 @@
     <Compile Include="PowerHelper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="KeyLogsForm.resx">
+      <DependentUpon>KeyLogsForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LockScreenForm.resx">
       <DependentUpon>LockScreenForm.cs</DependentUpon>
     </EmbeddedResource>

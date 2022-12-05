@@ -67,6 +67,7 @@
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.lblStatusLogo = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblStatus = new System.Windows.Forms.ToolStripStatusLabel();
+            this.btnLockScreen = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblMessage = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblNoSleepLogo = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblNoSleep = new System.Windows.Forms.ToolStripStatusLabel();
@@ -84,7 +85,6 @@
             this.pnlTop = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
             this.imgStatus = new System.Windows.Forms.PictureBox();
-            this.btnLockScreen = new System.Windows.Forms.ToolStripStatusLabel();
             this.contextMenuStrip.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -469,11 +469,19 @@
             this.lblStatus.Size = new System.Drawing.Size(79, 17);
             this.lblStatus.Text = "Disco‭nnected";
             // 
+            // btnLockScreen
+            // 
+            this.btnLockScreen.Font = new System.Drawing.Font("Wingdings", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
+            this.btnLockScreen.Name = "btnLockScreen";
+            this.btnLockScreen.Size = new System.Drawing.Size(19, 17);
+            this.btnLockScreen.Text = ":";
+            this.btnLockScreen.Click += new System.EventHandler(this.btnLockScreen_Click);
+            // 
             // lblMessage
             // 
             this.lblMessage.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.lblMessage.Name = "lblMessage";
-            this.lblMessage.Size = new System.Drawing.Size(153, 17);
+            this.lblMessage.Size = new System.Drawing.Size(155, 17);
             this.lblMessage.Spring = true;
             // 
             // lblNoSleepLogo
@@ -583,6 +591,7 @@
             this.lblEmail.Size = new System.Drawing.Size(104, 17);
             this.lblEmail.Text = "khoshniat@gmail.com";
             this.lblEmail.Visible = false;
+            this.lblEmail.Click += new System.EventHandler(this.lblEmail_Click);
             // 
             // timerPage
             // 
@@ -623,14 +632,6 @@
             this.imgStatus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.imgStatus.TabIndex = 3;
             this.imgStatus.TabStop = false;
-            // 
-            // btnLockScreen
-            // 
-            this.btnLockScreen.Font = new System.Drawing.Font("Wingdings", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
-            this.btnLockScreen.Name = "btnLockScreen";
-            this.btnLockScreen.Size = new System.Drawing.Size(19, 17);
-            this.btnLockScreen.Text = ":";
-            this.btnLockScreen.Click += new System.EventHandler(this.btnLockScreen_Click);
             // 
             // MainForm
             // 

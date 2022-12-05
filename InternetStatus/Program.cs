@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Windows.Forms;
 using InternetStatus.Properties;
+using System.Runtime.InteropServices;
 
 namespace InternetStatus
 {

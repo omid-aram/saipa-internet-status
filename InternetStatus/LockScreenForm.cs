@@ -16,6 +16,12 @@ namespace InternetStatus
             InitializeComponent();
         }
 
+        public void SetDateAndTime()
+        {
+            lblTime.Text = DateTime.Now.ToString("H:mm");
+            lblDate.Text = DateTime.Now.ToString("dddd, MMMM d");
+        }
+
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Hide();
@@ -23,7 +29,10 @@ namespace InternetStatus
 
         private void LockScreenForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            e.Cancel = true;
+            if (this.Visible)
+            {
+                e.Cancel = true;
+            }
         }
     }
 }

