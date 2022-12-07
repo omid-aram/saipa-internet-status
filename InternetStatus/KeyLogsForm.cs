@@ -38,7 +38,7 @@ namespace InternetStatus
 
             if (!tmrRefresh.Enabled)
             {
-                tmrRefresh.Start();
+                //tmrRefresh.Start();
             }
         }
 
