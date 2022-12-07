@@ -85,6 +85,9 @@
             this.pnlTop = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
             this.imgStatus = new System.Windows.Forms.PictureBox();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.mnuLockScreen = new System.Windows.Forms.ToolStripMenuItem();
+            this.lblSaipaLogo = new System.Windows.Forms.Label();
             this.contextMenuStrip.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -117,12 +120,14 @@
             this.toolStripMenuItem1,
             this.mnuIsAllowConnection,
             this.mnuConnectionTip,
+            this.toolStripSeparator3,
+            this.mnuLockScreen,
             this.toolStripSeparator1,
             this.btnShowForm,
             this.toolStripMenuItem2,
             this.btnClose});
             this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(176, 242);
+            this.contextMenuStrip.Size = new System.Drawing.Size(176, 270);
             // 
             // mnuHeader
             // 
@@ -251,6 +256,7 @@
             // 
             this.panel2.BackColor = System.Drawing.Color.MidnightBlue;
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.lblSaipaLogo);
             this.panel2.Controls.Add(this.txtConnectUrl);
             this.panel2.Controls.Add(this.lblSent);
             this.panel2.Controls.Add(this.lblReceived);
@@ -287,7 +293,7 @@
             this.lblSent.BackColor = System.Drawing.Color.Transparent;
             this.lblSent.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.lblSent.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lblSent.Location = new System.Drawing.Point(101, 255);
+            this.lblSent.Location = new System.Drawing.Point(101, 265);
             this.lblSent.Name = "lblSent";
             this.lblSent.Size = new System.Drawing.Size(142, 25);
             this.lblSent.TabIndex = 0;
@@ -298,7 +304,7 @@
             this.lblReceived.BackColor = System.Drawing.Color.Transparent;
             this.lblReceived.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.lblReceived.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lblReceived.Location = new System.Drawing.Point(101, 231);
+            this.lblReceived.Location = new System.Drawing.Point(101, 241);
             this.lblReceived.Name = "lblReceived";
             this.lblReceived.Size = new System.Drawing.Size(142, 25);
             this.lblReceived.TabIndex = 0;
@@ -309,7 +315,7 @@
             this.lblDate.BackColor = System.Drawing.Color.Transparent;
             this.lblDate.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.lblDate.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lblDate.Location = new System.Drawing.Point(101, 163);
+            this.lblDate.Location = new System.Drawing.Point(101, 182);
             this.lblDate.Name = "lblDate";
             this.lblDate.Size = new System.Drawing.Size(142, 25);
             this.lblDate.TabIndex = 0;
@@ -319,7 +325,7 @@
             // 
             this.label9.BackColor = System.Drawing.Color.Transparent;
             this.label9.ForeColor = System.Drawing.Color.Silver;
-            this.label9.Location = new System.Drawing.Point(15, 255);
+            this.label9.Location = new System.Drawing.Point(15, 265);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(80, 14);
             this.label9.TabIndex = 0;
@@ -329,7 +335,7 @@
             // 
             this.label7.BackColor = System.Drawing.Color.Transparent;
             this.label7.ForeColor = System.Drawing.Color.Silver;
-            this.label7.Location = new System.Drawing.Point(15, 232);
+            this.label7.Location = new System.Drawing.Point(15, 242);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(80, 14);
             this.label7.TabIndex = 0;
@@ -339,7 +345,7 @@
             // 
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.ForeColor = System.Drawing.Color.Silver;
-            this.label3.Location = new System.Drawing.Point(15, 164);
+            this.label3.Location = new System.Drawing.Point(15, 183);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(80, 14);
             this.label3.TabIndex = 0;
@@ -350,7 +356,7 @@
             this.lblTime.BackColor = System.Drawing.Color.Transparent;
             this.lblTime.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.lblTime.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lblTime.Location = new System.Drawing.Point(101, 188);
+            this.lblTime.Location = new System.Drawing.Point(101, 207);
             this.lblTime.Name = "lblTime";
             this.lblTime.Size = new System.Drawing.Size(142, 25);
             this.lblTime.TabIndex = 0;
@@ -360,7 +366,7 @@
             // 
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.ForeColor = System.Drawing.Color.Silver;
-            this.label5.Location = new System.Drawing.Point(15, 189);
+            this.label5.Location = new System.Drawing.Point(15, 208);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(80, 14);
             this.label5.TabIndex = 0;
@@ -374,7 +380,7 @@
             this.lblDisplayName.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.lblDisplayName.Location = new System.Drawing.Point(101, 60);
             this.lblDisplayName.Name = "lblDisplayName";
-            this.lblDisplayName.Size = new System.Drawing.Size(142, 103);
+            this.lblDisplayName.Size = new System.Drawing.Size(142, 109);
             this.lblDisplayName.TabIndex = 0;
             this.lblDisplayName.Text = "User Id:";
             // 
@@ -481,7 +487,7 @@
             // 
             this.lblMessage.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.lblMessage.Name = "lblMessage";
-            this.lblMessage.Size = new System.Drawing.Size(155, 17);
+            this.lblMessage.Size = new System.Drawing.Size(290, 17);
             this.lblMessage.Spring = true;
             // 
             // lblNoSleepLogo
@@ -633,6 +639,30 @@
             this.imgStatus.TabIndex = 3;
             this.imgStatus.TabStop = false;
             // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(172, 6);
+            // 
+            // mnuLockScreen
+            // 
+            this.mnuLockScreen.Name = "mnuLockScreen";
+            this.mnuLockScreen.Size = new System.Drawing.Size(175, 22);
+            this.mnuLockScreen.Text = "Lock Screen";
+            this.mnuLockScreen.Click += new System.EventHandler(this.btnLockScreen_Click);
+            // 
+            // lblSaipaLogo
+            // 
+            this.lblSaipaLogo.AutoSize = true;
+            this.lblSaipaLogo.BackColor = System.Drawing.Color.Transparent;
+            this.lblSaipaLogo.Font = new System.Drawing.Font("Courier New", 1F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSaipaLogo.ForeColor = System.Drawing.Color.Silver;
+            this.lblSaipaLogo.Location = new System.Drawing.Point(17, 99);
+            this.lblSaipaLogo.Name = "lblSaipaLogo";
+            this.lblSaipaLogo.Size = new System.Drawing.Size(42, 54);
+            this.lblSaipaLogo.TabIndex = 2;
+            this.lblSaipaLogo.Text = resources.GetString("lblSaipaLogo.Text");
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -723,6 +753,9 @@
         private System.Windows.Forms.ToolStripStatusLabel lblNoSleepLogo;
         private System.Windows.Forms.ToolStripStatusLabel lblNoSleep;
         private System.Windows.Forms.ToolStripStatusLabel btnLockScreen;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripMenuItem mnuLockScreen;
+        private System.Windows.Forms.Label lblSaipaLogo;
     }
 }
 
