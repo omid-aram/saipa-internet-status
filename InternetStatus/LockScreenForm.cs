@@ -22,17 +22,17 @@ namespace InternetStatus
             lblDate.Text = DateTime.Now.ToString("dddd, MMMM d");
         }
 
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-        }
-
         private void LockScreenForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (this.Visible)
             {
                 e.Cancel = true;
             }
+        }
+
+        private void btnClose_MouseClick(object sender, MouseEventArgs e)
+        {
+            this.Hide();
         }
     }
 }
