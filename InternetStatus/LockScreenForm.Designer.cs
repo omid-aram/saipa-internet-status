@@ -46,6 +46,7 @@ namespace InternetStatus
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(17, 17);
             this.btnClose.TabIndex = 0;
+            this.btnClose.TabStop = false;
             this.btnClose.UseVisualStyleBackColor = false;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 

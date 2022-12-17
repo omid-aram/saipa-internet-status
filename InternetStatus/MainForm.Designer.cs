@@ -41,6 +41,8 @@
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuIsAllowConnection = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuConnectionTip = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.mnuLockScreen = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.btnShowForm = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
@@ -49,6 +51,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.lstLog = new System.Windows.Forms.ListBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.lblSaipaLogo = new System.Windows.Forms.Label();
             this.txtConnectUrl = new System.Windows.Forms.TextBox();
             this.lblSent = new System.Windows.Forms.Label();
             this.lblReceived = new System.Windows.Forms.Label();
@@ -85,9 +88,6 @@
             this.pnlTop = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
             this.imgStatus = new System.Windows.Forms.PictureBox();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.mnuLockScreen = new System.Windows.Forms.ToolStripMenuItem();
-            this.lblSaipaLogo = new System.Windows.Forms.Label();
             this.contextMenuStrip.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -190,6 +190,18 @@
             this.mnuConnectionTip.Text = "Not Allowed!";
             this.mnuConnectionTip.Click += new System.EventHandler(this.mnuConnectionTip_Click);
             // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(172, 6);
+            // 
+            // mnuLockScreen
+            // 
+            this.mnuLockScreen.Name = "mnuLockScreen";
+            this.mnuLockScreen.Size = new System.Drawing.Size(175, 22);
+            this.mnuLockScreen.Text = "Lock Screen";
+            this.mnuLockScreen.Click += new System.EventHandler(this.btnLockScreen_Click);
+            // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
@@ -276,6 +288,18 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(248, 303);
             this.panel2.TabIndex = 1;
+            // 
+            // lblSaipaLogo
+            // 
+            this.lblSaipaLogo.AutoSize = true;
+            this.lblSaipaLogo.BackColor = System.Drawing.Color.Transparent;
+            this.lblSaipaLogo.Font = new System.Drawing.Font("Courier New", 1F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSaipaLogo.ForeColor = System.Drawing.Color.Silver;
+            this.lblSaipaLogo.Location = new System.Drawing.Point(17, 99);
+            this.lblSaipaLogo.Name = "lblSaipaLogo";
+            this.lblSaipaLogo.Size = new System.Drawing.Size(42, 54);
+            this.lblSaipaLogo.TabIndex = 2;
+            this.lblSaipaLogo.Text = resources.GetString("lblSaipaLogo.Text");
             // 
             // txtConnectUrl
             // 
@@ -446,11 +470,11 @@
             this.lblStatusLogo,
             this.lblStatus,
             this.btnLockScreen,
-            this.lblMessage,
             this.lblNoSleepLogo,
             this.lblNoSleep,
             this.lblAutoDCLogo,
             this.lblAutoDC,
+            this.lblMessage,
             this.mnuRefresh,
             this.lblEmailLogo,
             this.lblEmail});
@@ -545,19 +569,19 @@
             this.checkEveryToolStripMenuItem.Enabled = false;
             this.checkEveryToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.checkEveryToolStripMenuItem.Name = "checkEveryToolStripMenuItem";
-            this.checkEveryToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.checkEveryToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.checkEveryToolStripMenuItem.Text = "Check every ...";
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(152, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
             // 
             // mnuSec60
             // 
             this.mnuSec60.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.mnuSec60.Name = "mnuSec60";
-            this.mnuSec60.Size = new System.Drawing.Size(155, 22);
+            this.mnuSec60.Size = new System.Drawing.Size(180, 22);
             this.mnuSec60.Tag = "60";
             this.mnuSec60.Text = "60 Seconds";
             this.mnuSec60.Click += new System.EventHandler(this.mnuCheckEvery_Click);
@@ -568,7 +592,7 @@
             this.mnuSec40.CheckState = System.Windows.Forms.CheckState.Checked;
             this.mnuSec40.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.mnuSec40.Name = "mnuSec40";
-            this.mnuSec40.Size = new System.Drawing.Size(155, 22);
+            this.mnuSec40.Size = new System.Drawing.Size(180, 22);
             this.mnuSec40.Tag = "40";
             this.mnuSec40.Text = "40 Seconds";
             this.mnuSec40.Click += new System.EventHandler(this.mnuCheckEvery_Click);
@@ -577,7 +601,7 @@
             // 
             this.mnuSec20.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.mnuSec20.Name = "mnuSec20";
-            this.mnuSec20.Size = new System.Drawing.Size(155, 22);
+            this.mnuSec20.Size = new System.Drawing.Size(180, 22);
             this.mnuSec20.Tag = "20";
             this.mnuSec20.Text = "20 Seconds";
             this.mnuSec20.Click += new System.EventHandler(this.mnuCheckEvery_Click);
@@ -638,30 +662,6 @@
             this.imgStatus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.imgStatus.TabIndex = 3;
             this.imgStatus.TabStop = false;
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(172, 6);
-            // 
-            // mnuLockScreen
-            // 
-            this.mnuLockScreen.Name = "mnuLockScreen";
-            this.mnuLockScreen.Size = new System.Drawing.Size(175, 22);
-            this.mnuLockScreen.Text = "Lock Screen";
-            this.mnuLockScreen.Click += new System.EventHandler(this.btnLockScreen_Click);
-            // 
-            // lblSaipaLogo
-            // 
-            this.lblSaipaLogo.AutoSize = true;
-            this.lblSaipaLogo.BackColor = System.Drawing.Color.Transparent;
-            this.lblSaipaLogo.Font = new System.Drawing.Font("Courier New", 1F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSaipaLogo.ForeColor = System.Drawing.Color.Silver;
-            this.lblSaipaLogo.Location = new System.Drawing.Point(17, 99);
-            this.lblSaipaLogo.Name = "lblSaipaLogo";
-            this.lblSaipaLogo.Size = new System.Drawing.Size(42, 54);
-            this.lblSaipaLogo.TabIndex = 2;
-            this.lblSaipaLogo.Text = resources.GetString("lblSaipaLogo.Text");
             // 
             // MainForm
             // 
