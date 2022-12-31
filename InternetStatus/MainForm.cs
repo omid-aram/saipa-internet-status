@@ -194,7 +194,7 @@ namespace InternetStatus
                     //To prevent non-willing disconnection during downloads and uploads
                     if (((_myModel.Received - idleReceived) < 30 * Mb) && ((_myModel.Sent - idleSent) < 30 * Mb))
                     {
-                        if (!IsFirstLoad)
+                        if (IsNoSleep && !IsFirstLoad)
                         {
                             ShowLockScreen();
                         }
