@@ -104,6 +104,8 @@ namespace InternetStatus
 
                 lblNoSleepLogo.Text = value ? "n" : "o";
 
+                SaveSettingsValues();
+
                 LogStatus($"NoSleep: {value}");
             }
         }
@@ -116,6 +118,8 @@ namespace InternetStatus
                 _myModel.IsAutoDC = value;
 
                 lblAutoDCLogo.Text = value ? "n" : "o";
+
+                SaveSettingsValues();
 
                 LogStatus($"AutoDC: {value}");
             }
@@ -217,7 +221,7 @@ namespace InternetStatus
                 var today = GetPersianDate(DateTime.Now);
                 if (Settings.Default.Date != today)
                 {
-                    CloseCurrentSession();
+                    SaveSettingsValues();
                     OpenNewSession();
                 }
 
@@ -467,7 +471,7 @@ namespace InternetStatus
                 case Status.Disconnected:
                 case Status.NoNetwork:
                     {
-                        CloseCurrentSession();
+                        SaveSettingsValues();
                         notifyIcon.Icon = Icon.FromHandle(((Bitmap)imageList.Images[0]).GetHicon());
                         mnuHeader.Image = imageList.Images[0];
 
@@ -517,8 +521,10 @@ namespace InternetStatus
             ChangeStatus();
         }
 
-        private void CloseCurrentSession()
+        private void SaveSettingsValues()
         {
+            if (IsFirstLoad) return;
+
             idleKeyPressedCount = 0;
             keyPressedCount = 0;
 
@@ -759,7 +765,7 @@ namespace InternetStatus
                 }
                 else
                 {
-                    CloseCurrentSession();
+                    SaveSettingsValues();
                     KeyboardHook.Stop();
                 }
             }
