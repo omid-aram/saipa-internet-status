@@ -71,11 +71,11 @@
             this.lblStatusLogo = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.btnLockScreen = new System.Windows.Forms.ToolStripStatusLabel();
-            this.lblMessage = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblNoSleepLogo = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblNoSleep = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblAutoDCLogo = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblAutoDC = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lblMessage = new System.Windows.Forms.ToolStripStatusLabel();
             this.mnuRefresh = new System.Windows.Forms.ToolStripSplitButton();
             this.checkEveryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
@@ -88,6 +88,7 @@
             this.pnlTop = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
             this.imgStatus = new System.Windows.Forms.PictureBox();
+            this.lblVersion = new System.Windows.Forms.ToolStripStatusLabel();
             this.contextMenuStrip.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -477,7 +478,8 @@
             this.lblMessage,
             this.mnuRefresh,
             this.lblEmailLogo,
-            this.lblEmail});
+            this.lblEmail,
+            this.lblVersion});
             this.statusStrip.Location = new System.Drawing.Point(0, 393);
             this.statusStrip.Name = "statusStrip";
             this.statusStrip.Size = new System.Drawing.Size(618, 22);
@@ -506,13 +508,6 @@
             this.btnLockScreen.Size = new System.Drawing.Size(19, 17);
             this.btnLockScreen.Text = ":";
             this.btnLockScreen.Click += new System.EventHandler(this.btnLockScreen_Click);
-            // 
-            // lblMessage
-            // 
-            this.lblMessage.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblMessage.Name = "lblMessage";
-            this.lblMessage.Size = new System.Drawing.Size(290, 17);
-            this.lblMessage.Spring = true;
             // 
             // lblNoSleepLogo
             // 
@@ -546,6 +541,13 @@
             this.lblAutoDC.Text = "AutoDC";
             this.lblAutoDC.Click += new System.EventHandler(this.lblAutoDC_Click);
             // 
+            // lblMessage
+            // 
+            this.lblMessage.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblMessage.Name = "lblMessage";
+            this.lblMessage.Size = new System.Drawing.Size(91, 17);
+            this.lblMessage.Spring = true;
+            // 
             // mnuRefresh
             // 
             this.mnuRefresh.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
@@ -569,19 +571,19 @@
             this.checkEveryToolStripMenuItem.Enabled = false;
             this.checkEveryToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.checkEveryToolStripMenuItem.Name = "checkEveryToolStripMenuItem";
-            this.checkEveryToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.checkEveryToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
             this.checkEveryToolStripMenuItem.Text = "Check every ...";
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(152, 6);
             // 
             // mnuSec60
             // 
             this.mnuSec60.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.mnuSec60.Name = "mnuSec60";
-            this.mnuSec60.Size = new System.Drawing.Size(180, 22);
+            this.mnuSec60.Size = new System.Drawing.Size(155, 22);
             this.mnuSec60.Tag = "60";
             this.mnuSec60.Text = "60 Seconds";
             this.mnuSec60.Click += new System.EventHandler(this.mnuCheckEvery_Click);
@@ -592,7 +594,7 @@
             this.mnuSec40.CheckState = System.Windows.Forms.CheckState.Checked;
             this.mnuSec40.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.mnuSec40.Name = "mnuSec40";
-            this.mnuSec40.Size = new System.Drawing.Size(180, 22);
+            this.mnuSec40.Size = new System.Drawing.Size(155, 22);
             this.mnuSec40.Tag = "40";
             this.mnuSec40.Text = "40 Seconds";
             this.mnuSec40.Click += new System.EventHandler(this.mnuCheckEvery_Click);
@@ -601,7 +603,7 @@
             // 
             this.mnuSec20.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.mnuSec20.Name = "mnuSec20";
-            this.mnuSec20.Size = new System.Drawing.Size(180, 22);
+            this.mnuSec20.Size = new System.Drawing.Size(155, 22);
             this.mnuSec20.Tag = "20";
             this.mnuSec20.Text = "20 Seconds";
             this.mnuSec20.Click += new System.EventHandler(this.mnuCheckEvery_Click);
@@ -662,6 +664,14 @@
             this.imgStatus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.imgStatus.TabIndex = 3;
             this.imgStatus.TabStop = false;
+            // 
+            // lblVersion
+            // 
+            this.lblVersion.Font = new System.Drawing.Font("Segoe UI", 7F);
+            this.lblVersion.Name = "lblVersion";
+            this.lblVersion.Size = new System.Drawing.Size(44, 17);
+            this.lblVersion.Text = "1364.1.14";
+            this.lblVersion.Visible = false;
             // 
             // MainForm
             // 
@@ -756,6 +766,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripMenuItem mnuLockScreen;
         private System.Windows.Forms.Label lblSaipaLogo;
+        private System.Windows.Forms.ToolStripStatusLabel lblVersion;
     }
 }
 

@@ -555,6 +555,14 @@ namespace InternetStatus
         private void OpenNewSession()
         {
             var today = GetPersianDate(DateTime.Now);
+
+            //if (string.IsNullOrEmpty(Settings.Default.Date))
+            //{
+            //    TimerInterval = Settings.Default.Interval;
+            //    IsNoSleep = Settings.Default.IsNoSleep;
+            //    IsAutoDC = Settings.Default.IsAutoDC;
+            //}
+
             if (Settings.Default.Date != today)
             {
                 var recieved = SizeToString(Settings.Default.Recieved);
@@ -573,9 +581,9 @@ namespace InternetStatus
                 Settings.Default.Recieved = 0;
                 Settings.Default.Sent = 0;
                 Settings.Default.IsSync = false;
-                Settings.Default.Interval = TimerInterval;
-                Settings.Default.IsNoSleep = IsNoSleep;
-                Settings.Default.IsAutoDC = IsAutoDC;
+                //Settings.Default.Interval = TimerInterval;
+                //Settings.Default.IsNoSleep = IsNoSleep;
+                //Settings.Default.IsAutoDC = IsAutoDC;
                 Settings.Default.ConnectUrl = txtConnectUrl.Text;
 
                 Settings.Default.Save();
@@ -639,6 +647,8 @@ namespace InternetStatus
 
             Left = bound.Width - Width - 12;
             Top = bound.Height - Height - 12;
+
+            lblVersion.Text = Application.ProductVersion;
         }
 
         public void SaveKeyDown(Keys keys)
@@ -904,6 +914,7 @@ namespace InternetStatus
             try
             {
                 lblEmail.Visible = !lblEmail.Visible;
+                lblVersion.Visible = !lblVersion.Visible;
             }
             catch (Exception ex)
             {
